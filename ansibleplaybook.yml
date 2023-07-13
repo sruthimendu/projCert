@@ -1,0 +1,8 @@
+- hosts: webserver
+  become: true
+  become_user: root
+  tasks:
+  - name: Start docker service
+    service: name=docker state=started
+  - name: clone a github repo which has our dockerfile
+    git: repo=
