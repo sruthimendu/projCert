@@ -5,4 +5,9 @@
   - name: Start docker service
     service: name=docker state=started
   - name: clone a github repo which has our dockerfile
-    git: repo=
+    git: repo=https://github.com/sruthimendu/projCert.git dest=/tmp/myrepo
+  - name: Build the dockerfile
+    command: chdir=/tmp/myrepo docker build -t myansible .
+  - name: Run the image to launch a container
+    command: docker run -d -p 8081:80 myansible
+  
